@@ -20,7 +20,7 @@ import { v4 as uuid } from "uuid";
 import { TodoItem } from "../todos/todosSlice";
 
 const defaultValues: TodoItem = {
-  id: uuid(),
+  id: "",
   task: "",
 };
 
@@ -33,7 +33,7 @@ export const TodoForm = () => {
   });
 
   const onSubmit: SubmitHandler<TodoItem> = (data, event) => {
-    dispatch(addTodo(data));
+    dispatch(addTodo({ id: uuid(), task: data.task }));
     // submit 후 reset을 하기 위해 반드시 useState로 data를 set해주어야 한다.
     setData(data);
     reset(defaultValues);

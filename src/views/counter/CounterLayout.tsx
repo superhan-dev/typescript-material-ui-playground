@@ -1,9 +1,9 @@
 import React from "react";
 import { Counter } from "../../features/counter/Counter";
 
-import "./CounterPage.css";
+import "./CounterLayout.css";
 
-export const CounterPage = () => {
+export const CounterLayout = () => {
   return (
     <div className="App">
       <header className="App-header">
