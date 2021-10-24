@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-interface TodosState {
+export interface TodosState {
   items: Array<TodoItem>
 }
 
