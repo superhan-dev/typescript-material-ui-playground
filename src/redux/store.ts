@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import todosReducer from '../features/todos/todosSlice'
+import postsReducer from '../features/posts/postsSlice'
 import {combineReducers} from 'redux';
 
 const reducer = combineReducers({
   counter: counterReducer,
-  todos:todosReducer
+  todos:todosReducer,
+  posts:postsReducer
 })
 
 export const store = configureStore({

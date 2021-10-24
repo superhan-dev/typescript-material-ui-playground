@@ -22,10 +22,6 @@ const todosSlice = createSlice({
     },
     deleteTodo(state, {payload}) {
       state.items = state.items.filter(({id}) => id !== payload);
-      // const index = state.items.findIndex(todo => todo.id === payload.id)
-      // console.log("index:",index);
-      
-      // state.items.slice(index,1);
     }
   }
 })
