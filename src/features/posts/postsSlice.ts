@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch } from '../../redux/store';
+import { AppDispatch } from '../../states/store';
 import { TodosState } from '../todos/todosSlice';
 
 interface Post {

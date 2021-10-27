@@ -1,9 +1,9 @@
 import React from "react";
-import { TodoForm } from "./TodoForm";
+import { TodoForm } from "../features/todos/TodoForm";
 import { makeStyles } from "@mui/styles";
-import { TodoList } from "./TodoList";
+import { TodoList } from "../features/todos/TodoList";
 import { Box, Container } from "@mui/material";
-import { Posts } from "../posts/Posts";
+import { Posts } from "../features/posts/Posts";
 
 export const Todos = () => {
   return (

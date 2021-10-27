@@ -11,13 +11,13 @@ import {
   ListItemAvatar,
   Avatar,
 } from "@mui/material";
+import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../states/store";
 import moment from "moment";
-
-import { deleteTodo } from "./todosSlice";
+import { deleteTodo, patchTodo, TodoItem } from "./todosSlice";
 
 export const TodoList = () => {
   const todos = useSelector((state: RootState) => state.todos);
@@ -31,32 +31,51 @@ export const TodoList = () => {
     dispatch(deleteTodo(todoId));
   };
 
+  const handleUpdate = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    todo: TodoItem,
+    index: number
+  ) => {
+    event.preventDefault();
+    dispatch(patchTodo({ index, task: todo.task }));
+  };
+
   return (
     <>
       {todos.items.length > 0 && (
         <Card>
           <CardContent>
-            {todos.items.map((todo) => {
+            {todos.items.map((todo, index) => {
               return (
                 <List
                   key={todo.id}
                   sx={{
                     width: "100%",
-                    maxWidth: 360,
+                    maxWidth: 400,
                     bgcolor: "background.paper",
                   }}
                 >
                   <ListItem
                     alignItems="flex-start"
                     secondaryAction={
-                      <IconButton
-                        edge="end"
-                        aria-label="delete"
-                        onClick={(event) => handleDelete(event, todo.id)}
-                        color="error"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
+                      <>
+                        <IconButton
+                          edge="end"
+                          aria-label="delete"
+                          onClick={(event) => handleUpdate(event, todo, index)}
+                          color="info"
+                        >
+                          <CreateIcon />
+                        </IconButton>
+                        <IconButton
+                          edge="end"
+                          aria-label="delete"
+                          onClick={(event) => handleDelete(event, todo.id)}
+                          color="error"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </>
                     }
                   >
                     <ListItemAvatar>

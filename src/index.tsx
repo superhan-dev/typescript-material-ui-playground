@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { store } from "./redux/store";
+import { store } from "./states/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { styled, ThemeProvider } from "@mui/styles";

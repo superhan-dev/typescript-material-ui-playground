@@ -1,34 +1,39 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface TodosState {
   items: Array<TodoItem>
 }
 
 export interface TodoItem {
-  id:string,
-  task:string
+  id: string,
+  task: string
 }
 
 const initialState: TodosState = {
-  items:[]
+  items: []
 };
 
 const todosSlice = createSlice({
   name: 'todos',
   initialState,
-  reducers:{
+  reducers: {
     addTodo(state, { payload }) {
       state.items.push(payload);
     },
-    deleteTodo(state, {payload}) {
-      state.items = state.items.filter(({id}) => id !== payload);
+    deleteTodo(state, { payload: index }) {
+      // state.items = state.items.filter(({ id }) => id !== index);
+      state.items.splice(index, 1)
+    },
+    patchTodo(state, { payload: { index, task } }) {
+      state.items[index].task = task;
     }
   }
 })
 
 export const {
   addTodo,
-  deleteTodo
+  deleteTodo,
+  patchTodo
 } = todosSlice.actions;
 
 export default todosSlice.reducer;
