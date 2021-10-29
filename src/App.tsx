@@ -8,6 +8,11 @@ import { Todos } from "./views/Todos";
 import { Counter } from "./views/Counter";
 
 const App: React.FC = (): JSX.Element => {
+  /**
+   * routes.ts로 분리하려 했으나,
+   * typescript는 element: <MainLayout />와 같은 방식을 오직 tsx로 선언해야 했다.
+   * 따라서 우선 app안에 route를 구현하는 형태로 진행한다.
+   */
   const mainRoutes = {
     path: "/",
     element: <MainLayout />,

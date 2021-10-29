@@ -8,16 +8,12 @@ import { Posts } from "../features/posts/Posts";
 export const Todos = () => {
   return (
     <Container>
-      <Box mb={5} display="flex" justifyContent="center" alignItems="center">
+      <Box my={3} display="flex" justifyContent="center" alignItems="center">
         <TodoForm />
       </Box>
 
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box my={3} display="flex" justifyContent="center" alignItems="center">
         <TodoList />
-      </Box>
-
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Posts />
       </Box>
     </Container>
   );

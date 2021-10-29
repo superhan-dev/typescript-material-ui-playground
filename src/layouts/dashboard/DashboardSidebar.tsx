@@ -161,8 +161,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }: DashboardSidebar) => {
           PaperProps={{
             sx: {
               width: 256,
-              top: 64,
-              height: "calc(100% - 64px)",
+              height: "100%",
             },
           }}
         >

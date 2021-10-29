@@ -7,7 +7,7 @@ import {
   CardContent,
   Typography,
   CardActions,
-  TextField,
+  CardHeader,
   Card,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
@@ -42,20 +42,22 @@ export const TodoForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {};
 
   return (
-    <Card sx={{ minWidth: 300, maxWidth: 500 }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <CardContent>
+    // <Card sx={{ minWidth: 300, maxWidth: 500 }}>
+    <Card sx={{ width: "100%" }}>
+      <CardHeader
+        title={
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             What you want to do?
           </Typography>
-          <Typography variant="h5" component="div">
-            Todo List
-          </Typography>
+        }
+      ></CardHeader>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <CardContent>
           <div>
             <Controller
               name="task"
               control={control}
-              render={({ field }) => <Input {...field} />}
+              render={({ field }) => <Input fullWidth {...field} />}
             />
           </div>
         </CardContent>

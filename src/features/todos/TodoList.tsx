@@ -41,17 +41,32 @@ export const TodoList = () => {
   };
 
   return (
-    <>
-      {todos.items.length > 0 && (
-        <Card>
-          <CardContent>
+    <Card
+      sx={{
+        width: "100%",
+        bgcolor: "background.paper",
+      }}
+    >
+      <CardContent>
+        {todos.items.length <= 0 ? (
+          <List
+            sx={{
+              width: "100%",
+              bgcolor: "background.paper",
+            }}
+          >
+            <ListItem>
+              <ListItemText primary={"등록된 목록이 없습니다."} />
+            </ListItem>
+          </List>
+        ) : (
+          <>
             {todos.items.map((todo, index) => {
               return (
                 <List
                   key={todo.id}
                   sx={{
                     width: "100%",
-                    maxWidth: 400,
                     bgcolor: "background.paper",
                   }}
                 >
@@ -100,13 +115,12 @@ export const TodoList = () => {
                       }
                     />
                   </ListItem>
-                  {/* <Divider /> */}
                 </List>
               );
             })}
-          </CardContent>
-        </Card>
-      )}
-    </>
+          </>
+        )}
+      </CardContent>
+    </Card>
   );
 };

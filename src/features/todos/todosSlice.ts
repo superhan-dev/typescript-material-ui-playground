@@ -20,9 +20,9 @@ const todosSlice = createSlice({
     addTodo(state, { payload }) {
       state.items.push(payload);
     },
-    deleteTodo(state, { payload: index }) {
-      // state.items = state.items.filter(({ id }) => id !== index);
-      state.items.splice(index, 1)
+    deleteTodo(state, { payload: todoId }) {
+      state.items = state.items.filter(({ id }) => id !== todoId);
+      // state.items.splice(index, 1)
     },
     patchTodo(state, { payload: { index, task } }) {
       state.items[index].task = task;
