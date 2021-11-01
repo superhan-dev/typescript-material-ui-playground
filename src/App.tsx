@@ -4,8 +4,7 @@ import { PageNotFoundView } from "./views/PageNotFoundView";
 
 import DashboardLayout from "./layouts/dashboard/DashboardLayout";
 import { MainLayout } from "./layouts/main/MainLayout";
-import { Todos } from "./views/Todos";
-import { Counter } from "./views/Counter";
+import { Todos, Counter, Login } from "./views";
 
 const App: React.FC = (): JSX.Element => {
   /**
@@ -20,6 +19,7 @@ const App: React.FC = (): JSX.Element => {
       { path: "*", element: <Navigate to="/404" /> },
       { path: "404", element: <PageNotFoundView /> },
       { path: "/", element: <Navigate to="/app/todos" /> },
+      { path: "login", element: <Login /> },
     ],
   };
 
