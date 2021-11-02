@@ -2,21 +2,30 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { store } from "./states/store";
+
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
-import { styled, ThemeProvider } from "@mui/styles";
+import { ThemeProvider } from "@mui/styles";
 import { theme } from "./theme";
 import { BrowserRouter } from "react-router-dom";
+import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
+
+// import { todosApi } from "./features/todos/todosApi";
+
+import { setupStore } from "./states/store";
+
+const store = setupStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      {/* <ApiProvider api={todosApi}> */}
       <Provider store={store}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </Provider>
+      {/* </ApiProvider> */}
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -20,6 +20,8 @@ import {
   User as UserIcon,
   UserPlus as UserPlusIcon,
   Users as UsersIcon,
+  Trello as TrelloIcon,
+  PieChart as PieChartIcon,
 } from "react-feather";
 import NavItem from "./NavItem";
 
@@ -34,6 +36,16 @@ const items = [
     href: "/app/dashboard",
     icon: BarChartIcon,
     title: "Dashboard",
+  },
+  {
+    href: "/app/todos",
+    icon: TrelloIcon,
+    title: "Todos",
+  },
+  {
+    href: "/app/charts",
+    icon: PieChartIcon,
+    title: "Charts",
   },
   {
     href: "/app/customers",

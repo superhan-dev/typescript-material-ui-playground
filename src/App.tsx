@@ -4,7 +4,9 @@ import { PageNotFoundView } from "./views/PageNotFoundView";
 
 import DashboardLayout from "./layouts/dashboard/DashboardLayout";
 import { MainLayout } from "./layouts/main/MainLayout";
-import { Todos, Counter, Login } from "./views";
+import { Todos, Counter, Login, Charts } from "./views";
+import { Dashboard } from "./views/Dashboard";
+import { Pokemon } from "./views/Pokemon";
 
 const App: React.FC = (): JSX.Element => {
   /**
@@ -18,7 +20,7 @@ const App: React.FC = (): JSX.Element => {
     children: [
       { path: "*", element: <Navigate to="/404" /> },
       { path: "404", element: <PageNotFoundView /> },
-      { path: "/", element: <Navigate to="/app/todos" /> },
+      { path: "/", element: <Navigate to="/app/dashboard" /> },
       { path: "login", element: <Login /> },
     ],
   };
@@ -27,8 +29,11 @@ const App: React.FC = (): JSX.Element => {
     path: "app",
     element: <DashboardLayout />,
     children: [
+      { path: "dashboard", element: <Dashboard /> },
       { path: "todos", element: <Todos /> },
+      { path: "charts", element: <Charts /> },
       { path: "counter", element: <Counter /> },
+      { path: "pokemon", element: <Pokemon /> },
       { path: "*", element: <Navigate to="/404" /> },
     ],
   };
