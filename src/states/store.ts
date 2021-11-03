@@ -2,13 +2,11 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import type { PreloadedState } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import counterReducer from '../features/counter/counterSlice';
-import todosReducer from '../features/todos/todosSlice'
 import postsReducer from '../features/posts/postsSlice'
 import usersReducer from '../features/users/usersSlice'
 import { combineReducers } from 'redux';
 
-import logger from 'redux-logger';
-import { todosApi } from '../features/todos/todosApi';
+import { todosApi } from '../services/todos';
 import { pokemonApi } from '../services/pokemon';
 
 
@@ -17,10 +15,10 @@ import { pokemonApi } from '../services/pokemon';
 // 여러 reducer를 하나로 함쳐주는 역할을 하는 combineReducers
 const rootReducer = combineReducers({
   counter: counterReducer,
-  todos: todosReducer,
   posts: postsReducer,
   users: usersReducer,
-  [pokemonApi.reducerPath]: pokemonApi.reducer
+  [pokemonApi.reducerPath]: pokemonApi.reducer,
+  [todosApi.reducerPath]: todosApi.reducer
 })
 
 // export const store = configureStore({
@@ -37,7 +35,7 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
     // adding the api middleware enables caching, invalidation, polling and other features of `rtk-query`
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
       .concat(pokemonApi.middleware)
-      .concat(logger),
+      .concat(todosApi.middleware),
     preloadedState
   })
 }

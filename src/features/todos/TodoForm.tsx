@@ -1,45 +1,44 @@
+import React, { useState } from "react";
 import {
-  FormControl,
   Input,
-  InputLabel,
-  FormHelperText,
   Button,
   CardContent,
   Typography,
   CardActions,
   CardHeader,
   Card,
+  CircularProgress,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo } from "./todosSlice";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 
-import { v4 as uuid } from "uuid";
+import { Todo } from "../../types";
 
-import { TodoItem } from "../todos/todosSlice";
+import { useAddTodoMutation } from "../../services/todos";
 
-const defaultValues: TodoItem = {
+const defaultValues: Todo = {
   id: "",
-  task: "",
+  text: "",
+  active: false,
 };
 
 export const TodoForm = () => {
-  const dispatch = useDispatch();
-  const [data, setData] = useState<TodoItem>(defaultValues);
+  const [todo, setTodo] = useState<Pick<Todo, "id">>(defaultValues);
 
-  const { control, handleSubmit, reset } = useForm<TodoItem>({
+  const [addTodo, { isLoading }] = useAddTodoMutation();
+
+  const { control, handleSubmit, reset } = useForm<Todo>({
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<TodoItem> = (data, event) => {
-    dispatch(addTodo({ id: uuid(), task: data.task }));
-    // submit 후 reset을 하기 위해 반드시 useState로 data를 set해주어야 한다.
-    setData(data);
-    reset(defaultValues);
+  const onSubmit: SubmitHandler<Todo> = async (data, event) => {
+    try {
+      await addTodo(data).unwrap();
+      setTodo(defaultValues);
+      reset(defaultValues);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {};
 
   return (
     // <Card sx={{ minWidth: 300, maxWidth: 500 }}>
@@ -55,15 +54,15 @@ export const TodoForm = () => {
         <CardContent>
           <div>
             <Controller
-              name="task"
+              name="text"
               control={control}
               render={({ field }) => <Input fullWidth {...field} />}
             />
           </div>
         </CardContent>
         <CardActions>
-          <Button type="submit" size="small">
-            Create
+          <Button type="submit" size="small" disabled={isLoading}>
+            {isLoading ? <CircularProgress size={24} /> : <p>Create</p>}
           </Button>
         </CardActions>
       </form>

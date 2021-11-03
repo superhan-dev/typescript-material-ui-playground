@@ -5,7 +5,7 @@ import { TodoList } from "../features/todos/TodoList";
 import { Box, Container } from "@mui/material";
 import { Posts } from "../features/posts/Posts";
 
-export const Todos = () => {
+export const Todos: React.FC = () => {
   return (
     <Container>
       <Box my={3} display="flex" justifyContent="center" alignItems="center">
